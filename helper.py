@@ -172,7 +172,7 @@ def download_extract(database_name, data_path):
     # Remove compressed data
     os.remove(save_path)
 
-
+    
 class Dataset(object):
     """
     Dataset
@@ -198,7 +198,7 @@ class Dataset(object):
 
         self.data_files = data_files
         self.shape = len(data_files), IMAGE_WIDTH, IMAGE_HEIGHT, image_channels
-
+    
     def get_batches(self, batch_size):
         """
         Generate batches
@@ -208,6 +208,7 @@ class Dataset(object):
         IMAGE_MAX_VALUE = 255
 
         current_index = 0
+        
         while current_index + batch_size <= self.shape[0]:
             data_batch = get_batch(
                 self.data_files[current_index:current_index + batch_size],
@@ -217,7 +218,7 @@ class Dataset(object):
             current_index += batch_size
 
             yield data_batch / IMAGE_MAX_VALUE - 0.5
-
+            
 
 class DLProgress(tqdm):
     """
